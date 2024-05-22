@@ -6,7 +6,17 @@ jobs:
   check-i2c-connection:
     runner: ubuntu-runner
     device: raspberry-pi-4
+    input:
+      artifact:
+        - id_rsa
     steps:
+      - run:
+          name: Setup SSH keys
+          command: |
+            cp ./id_rsa ~/.ssh/id_rsa
+            chmod 600 ~/.ssh/id_rsa
+            eval "$(ssh-agent -s)"
+            ssh-add ~/.ssh/id_rsa
       - run:
           name: Set i2c
           on-device: True

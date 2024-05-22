@@ -22,7 +22,7 @@ jobs:
           name: Set i2c
           on-device: True
           command: |
-            sudo raspi-config nonint do_i2c 1
+            sudo raspi-config nonint do_i2c 0
       - run:
           name: Install i2c
           on-device: True
@@ -41,6 +41,7 @@ jobs:
           on-device: True
           command: |
             sudo i2cdetect -y 1
+          fail: "Error"
 
 workflows:
   getting-started-rasp-pi:

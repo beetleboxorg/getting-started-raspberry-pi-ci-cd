@@ -43,7 +43,28 @@ jobs:
             sudo i2cdetect -y 1
           fail: "Error"
 
+  run-display:
+    runner: ubuntu-runner
+    device: raspberry-pi-4
+    input:
+      artifact:
+        - id_rsa
+    steps:
+      - run:
+          name: Setup SSH keys
+          command: |
+            mkdir ~/.ssh
+            cp ./id_rsa ~/.ssh/id_rsa
+            chmod 600 ~/.ssh/id_rsa
+            eval "$(ssh-agent -s)"
+            ssh-add ~/.ssh/id_rsa
+      - transfer:
+          name: Transfer
+          SOURCE: ./display-hello-world.py
+          DESTINATION: andrewswirski@192.168.1.95:~/
+
 workflows:
   getting-started-rasp-pi:
     jobs:
-      - check-i2c-connection
+      # - check-i2c-connection
+      - run-display

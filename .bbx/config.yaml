@@ -1,0 +1,29 @@
+runners:
+ ubuntu-runner:
+  image: public.ecr.aws/y2s4f3y9/ubuntu-generic:latest
+
+jobs:
+  check-i2c-connection:
+    runner: ubuntu-runner
+    device: raspberry-pi-4
+    steps:
+      - run:
+          name: Set i2c
+          on-device: True
+          command: |
+            sudo raspi-config nonint do_i2c 1
+            sudo apt-get install i2c-tools
+            sudo reboot
+      - run:
+          name: Wait for reboot
+          command: sleep 5
+      - run:
+          name: Check i2c connection
+          on-device: True
+          command: |
+            sudo i2cdetect -y 1
+
+workflows:
+  getting-started-rasp-pi:
+    jobs:
+      - check-i2c-connection

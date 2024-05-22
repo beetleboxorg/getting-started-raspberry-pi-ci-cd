@@ -13,6 +13,7 @@ jobs:
       - run:
           name: Setup SSH keys
           command: |
+            mkdir ~/.ssh
             cp ./id_rsa ~/.ssh/id_rsa
             chmod 600 ~/.ssh/id_rsa
             eval "$(ssh-agent -s)"

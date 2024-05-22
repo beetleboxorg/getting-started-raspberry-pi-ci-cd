@@ -62,6 +62,22 @@ jobs:
           name: Transfer
           SOURCE: ./display-hello-world.py
           DESTINATION: andrewswirski@192.168.1.95:~/
+      - run:
+          name: Create an env
+          on-device: True
+          command: |
+            python3 -m venv ~/luma-env
+      - run:
+          name: Install luma
+          on-device: True
+          command: |
+            ~/luma-env/bin/python -m pip install --upgrade luma.oled
+      - run:
+          name: Run display python script
+          on-device: True
+          command: |
+            ~/luma-env/bin/python display-hello-world.py
+          fail: "Error"
 
 workflows:
   getting-started-rasp-pi:

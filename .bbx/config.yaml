@@ -46,6 +46,8 @@ jobs:
   run-display:
     runner: ubuntu-runner
     device: raspberry-pi-4
+    depends:
+      - check-i2c-connection
     input:
       artifact:
         - id_rsa
@@ -82,5 +84,5 @@ jobs:
 workflows:
   getting-started-rasp-pi:
     jobs:
-      # - check-i2c-connection
+      - check-i2c-connection
       - run-display

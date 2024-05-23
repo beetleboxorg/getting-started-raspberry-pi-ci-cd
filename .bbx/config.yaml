@@ -63,7 +63,7 @@ jobs:
       - transfer:
           name: Transfer
           SOURCE: ./display-hello-world.py
-          DESTINATION: andrewswirski@192.168.1.95:~/
+          DESTINATION: <username>@<rasp-pi-address>:~/
       - run:
           name: Create an env
           on-device: True

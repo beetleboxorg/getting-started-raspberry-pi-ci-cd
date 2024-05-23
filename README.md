@@ -1,5 +1,5 @@
 # Getting Started with CI/CD for Raspberry Pi tutorial | BeetleboxCI
-Welcome to the getting started with CI/CD for Raspberry Pu tutorial using BeetleboxCI.
+Welcome to the getting started with CI/CD for Raspberry Pi tutorial using BeetleboxCI.
 
 You can find the full written tutorial here:
 https://docs.beetleboxci.com/docs/tutorials/getting-started-raspberry-pi-overview
